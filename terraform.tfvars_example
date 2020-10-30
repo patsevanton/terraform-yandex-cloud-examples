@@ -1,0 +1,3 @@
+token                    = "" # from yc config list
+cloud_id                 = "" # from yc config list
+folder_id                = "" # from yc config list
