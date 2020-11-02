@@ -5,9 +5,8 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-resource "yandex_compute_instance" "vm-1" {
-  name = "patroni-${count.index}"
-  count = 2
+resource "yandex_compute_instance" "application1" {
+  name = "application1"
 
   resources {
     cores  = 2
@@ -30,9 +29,9 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
-resource "yandex_compute_instance" "vm-2" {
-  name = "mysql-${count.index}"
-  count = 2
+resource "yandex_compute_instance" "patroni" {
+  name = "patroni-${count.index}"
+  count = 3
 
   resources {
     cores  = 2
@@ -66,18 +65,20 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
-output "vm_1_external_ip_address" {
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+output "application1_external_ip_address" {
+  value = yandex_compute_instance.application1.*.network_interface.0.nat_ip_address
 }
 
-output "vm_1_internal_ip_address" {
-  value = yandex_compute_instance.vm-1.network_interface.0.ip_address
+output "application1_internal_ip_address" {
+  value = yandex_compute_instance.application1.*.network_interface.0.ip_address
 }
 
-output "vm_2_external_ip_address" {
-  value = yandex_compute_instance.vm-2.network_interface.0.nat_ip_address
+output "patroni_external_ip_address" {
+  value = yandex_compute_instance.patroni.*.network_interface.0.nat_ip_address
 }
 
-output "vm_2_internal_ip_address" {
-  value = yandex_compute_instance.vm-2.network_interface.0.ip_address
+output "patroni_internal_ip_address" {
+  value = yandex_compute_instance.patroni.*.network_interface.0.ip_address
 }
+
+
