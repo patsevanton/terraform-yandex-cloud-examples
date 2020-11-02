@@ -5,7 +5,7 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-resource "yandex_compute_instance" "patroni" {
+resource "yandex_compute_instance" "vm-1" {
   name = "patroni-${count.index}"
   count = 2
 
@@ -30,7 +30,7 @@ resource "yandex_compute_instance" "patroni" {
   }
 }
 
-resource "yandex_compute_instance" "mysql" {
+resource "yandex_compute_instance" "vm-2" {
   name = "mysql-${count.index}"
   count = 2
 
