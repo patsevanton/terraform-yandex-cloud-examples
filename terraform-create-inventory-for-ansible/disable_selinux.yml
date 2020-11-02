@@ -1,0 +1,21 @@
+---
+- hosts: zookeeper
+  gather_facts: False
+  become: yes
+  tasks:
+    - name: Install libselinux as prerequisite for SELinux Ansible module
+      yum:
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - libselinux-python
+        - libsemanage-python
+
+    - name: Disable SELinux at next reboot
+      selinux:
+        state: disabled
+
+    - name: Set SELinux in permissive mode until the machine is rebooted
+      command: setenforce 0
+      ignore_errors: true
+      changed_when: false
