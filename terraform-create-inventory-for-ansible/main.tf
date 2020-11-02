@@ -29,8 +29,8 @@ resource "yandex_compute_instance" "application1" {
   }
 }
 
-resource "yandex_compute_instance" "patroni" {
-  name = "patroni-${count.index}"
+resource "yandex_compute_instance" "zookeeper" {
+  name = "zookeeper-${count.index}"
   count = 3
 
   resources {
@@ -73,12 +73,12 @@ output "application1_internal_ip_address" {
   value = yandex_compute_instance.application1.*.network_interface.0.ip_address
 }
 
-output "patroni_external_ip_address" {
-  value = yandex_compute_instance.patroni.*.network_interface.0.nat_ip_address
+output "zookeeper_external_ip_address" {
+  value = yandex_compute_instance.zookeeper.*.network_interface.0.nat_ip_address
 }
 
-output "patroni_internal_ip_address" {
-  value = yandex_compute_instance.patroni.*.network_interface.0.ip_address
+output "zookeeper_internal_ip_address" {
+  value = yandex_compute_instance.zookeeper.*.network_interface.0.ip_address
 }
 
 
