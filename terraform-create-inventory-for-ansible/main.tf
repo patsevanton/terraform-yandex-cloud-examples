@@ -5,8 +5,9 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-resource "yandex_compute_instance" "vm-1" {
-  name = "terraform1"
+resource "yandex_compute_instance" "patroni" {
+  name = "patroni-${count.index}"
+  count = 2
 
   resources {
     cores  = 2
@@ -29,8 +30,9 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
-resource "yandex_compute_instance" "vm-2" {
-  name = "terraform2"
+resource "yandex_compute_instance" "mysql" {
+  name = "mysql-${count.index}"
+  count = 2
 
   resources {
     cores  = 2
