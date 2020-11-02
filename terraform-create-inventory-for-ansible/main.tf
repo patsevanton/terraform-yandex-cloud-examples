@@ -9,8 +9,8 @@ resource "yandex_compute_instance" "vm-1" {
   name = "terraform1"
 
   resources {
-    cores  = 1
-    memory = 1
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
@@ -33,8 +33,8 @@ resource "yandex_compute_instance" "vm-2" {
   name = "terraform2"
 
   resources {
-    cores  = 1
-    memory = 1
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
