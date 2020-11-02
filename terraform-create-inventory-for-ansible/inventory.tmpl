@@ -1,5 +1,5 @@
-[${vm_1_name}]
-${vm_1_name} ansible_host=${vm_1_external_ip_address} # or ansible_host=${vm_1_internal_ip_address}
+[${application1_name}]
+${application1_name} ansible_host=${application1_external_ip_address} # or ansible_host=${application1_internal_ip_address}
 
 [patroni]
 %{ for index, name in patroni_name ~}
