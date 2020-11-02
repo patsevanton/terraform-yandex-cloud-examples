@@ -15,7 +15,7 @@ resource "yandex_compute_instance" "application1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd87va5cc00gaq2f5qfb"
+      image_id = "fd84ls54ki3ebimih00p"
     }
   }
 
@@ -40,7 +40,7 @@ resource "yandex_compute_instance" "zookeeper" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd87va5cc00gaq2f5qfb"
+      image_id = "fd84ls54ki3ebimih00p"
     }
   }
 
