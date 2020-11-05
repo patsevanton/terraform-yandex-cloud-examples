@@ -2,5 +2,6 @@
 - name: Install ZooKeeper cluster
   hosts: zookeeper
   roles:
+    - role: juju4.ipv6
     - role: andrewrothstein.zookeeper
     - role: andrewrothstein.zookeeper-cluster
