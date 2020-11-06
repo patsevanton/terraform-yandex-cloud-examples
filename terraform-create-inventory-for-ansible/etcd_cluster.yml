@@ -1,0 +1,7 @@
+---
+- name: Install ZooKeeper cluster
+  hosts: zookeeper
+  become: yes
+  roles:
+    - role: andrewrothstein.etcd-cluster
+
