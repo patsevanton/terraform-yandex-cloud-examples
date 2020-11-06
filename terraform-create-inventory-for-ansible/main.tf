@@ -22,7 +22,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
 
 module "etcd-cluster" {
   source = "./modules/etcd-cluster"
-  subnet_id = "${yandex_vpc_subnet.subnet-1.id}"
+  subnet_id = yandex_vpc_subnet.subnet-1.id
 }
 
 # module "zookeeper-cluster" {

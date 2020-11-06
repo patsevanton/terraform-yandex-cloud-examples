@@ -14,7 +14,7 @@ resource "yandex_compute_instance" "etcd" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
+    subnet_id = subnet_id
     nat       = true
   }
 
