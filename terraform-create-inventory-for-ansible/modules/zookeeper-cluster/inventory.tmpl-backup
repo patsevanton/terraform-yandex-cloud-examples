@@ -1,0 +1,7 @@
+#[zookeeper]
+#%{ for index, name in zookeeper_name ~}
+#${name} ansible_host=${zookeeper_external_ip_address[index]} zookeeper_myid=[index] # ${zookeeper_internal_ip_address[index]}
+#%{ endfor ~}
+
+#[zookeeper-quorum]
+#host[0:2]

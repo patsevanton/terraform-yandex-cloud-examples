@@ -1,0 +1,7 @@
+[etcd]
+%{ for index, name in etcd_name ~}
+${name} ansible_host=${etcd_external_ip_address[index]} # ${etcd_internal_ip_address[index]}
+%{ endfor ~}
+
+[etcd-master]
+${name}[0:2]
