@@ -3,6 +3,5 @@
   hosts: zookeeper
   become: yes
   roles:
-    - role: juju4.ipv6
     - role: andrewrothstein.zookeeper
     - role: andrewrothstein.zookeeper-cluster
