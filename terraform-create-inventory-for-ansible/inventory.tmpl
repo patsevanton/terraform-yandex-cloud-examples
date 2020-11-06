@@ -3,7 +3,7 @@ ${application1_name} ansible_host=${application1_external_ip_address} # or ansib
 
 [zookeeper]
 %{ for index, name in zookeeper_name ~}
-${name} ansible_host=${zookeeper_external_ip_address[index]} # ${zookeeper_internal_ip_address[index]}
+${name} ansible_host=${zookeeper_external_ip_address[index]} zookeeper_myid=[index] # ${zookeeper_internal_ip_address[index]}
 %{ endfor ~}
 
 [zookeeper-quorum]
