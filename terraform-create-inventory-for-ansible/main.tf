@@ -5,55 +5,6 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-resource "yandex_compute_instance" "application1" {
-  name = "application1"
-
-  resources {
-    cores  = 2
-    memory = 2
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = "fd84ls54ki3ebimih00p"
-    }
-  }
-
-  network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
-  }
-
-  metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
-  }
-}
-
-resource "yandex_compute_instance" "zookeeper" {
-  name = "zookeeper-${count.index}"
-  count = 3
-
-  resources {
-    cores  = 2
-    memory = 2
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = "fd84ls54ki3ebimih00p"
-    }
-  }
-
-  network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
-  }
-
-  metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
-  }
-}
-
 resource "yandex_vpc_network" "network-1" {
   name = "network1"
 }
@@ -65,26 +16,14 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
-output "application1_external_ip_address" {
-  value = yandex_compute_instance.application1.*.network_interface.0.nat_ip_address
-}
-
-output "application1_internal_ip_address" {
-  value = yandex_compute_instance.application1.*.network_interface.0.ip_address
-}
-
-# output "zookeeper_external_ip_address" {
-#   value = yandex_compute_instance.zookeeper.*.network_interface.0.nat_ip_address
+# module "application1" {
+#   source = "./application1"
 # }
 
-# output "zookeeper_internal_ip_address" {
-#   value = yandex_compute_instance.zookeeper.*.network_interface.0.ip_address
+module "etcd-cluster" {
+  source = "./etcd-cluster"
+}
+
+# module "zookeeper-cluster" {
+#   source = "./etcd-cluster"
 # }
-
-output "etcd_external_ip_address" {
-  value = yandex_compute_instance.etcd.*.network_interface.0.nat_ip_address
-}
-
-output "etcd_internal_ip_address" {
-  value = yandex_compute_instance.etcd.*.network_interface.0.ip_address
-}
