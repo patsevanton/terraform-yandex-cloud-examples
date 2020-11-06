@@ -17,13 +17,13 @@ resource "yandex_vpc_subnet" "subnet-1" {
 }
 
 # module "application1" {
-#   source = "./application1"
+#   source = "./modules/application1"
 # }
 
 module "etcd-cluster" {
-  source = "./etcd-cluster"
+  source = "./modules/etcd-cluster"
 }
 
 # module "zookeeper-cluster" {
-#   source = "./etcd-cluster"
+#   source = "./modules/etcd-cluster"
 # }
