@@ -80,7 +80,7 @@ output "vm_1_internal_ip_address" {
 }
 
 output "vm_2_internal_ip_address" {
-  value = var.create_terraform1 ? yandex_compute_instance.vm_2.network_interface.0.ip_address : null
+  value = var.create_terraform2 ? yandex_compute_instance.vm_2.network_interface.0.ip_address : null
 }
 
 output "vm_1_external_ip_address" {
@@ -88,7 +88,7 @@ output "vm_1_external_ip_address" {
 }
 
 output "vm_2_external_ip_address" {
-  value = var.create_terraform1 ? yandex_compute_instance.vm_2.network_interface.0.nat_ip_address : null
+  value = var.create_terraform2 ? yandex_compute_instance.vm_2.network_interface.0.nat_ip_address : null
 }
 
 output "subnet-1" {
