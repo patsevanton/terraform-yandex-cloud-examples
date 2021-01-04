@@ -17,3 +17,13 @@ variable "folder_id" {
   type        = string
   description = "your folder id"
 }
+
+variable "create_terraform1" {
+  type = string
+  default = "true"
+}
+
+variable "create_terraform2" {
+  type = string
+  default = "true"
+}
