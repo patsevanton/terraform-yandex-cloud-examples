@@ -1,0 +1,5 @@
+token             = "" # from yc config list
+cloud_id          = "" # from yc config list
+folder_id         = "" # from yc config list
+create_terraform1 = "true"
+create_terraform2 = "true"
