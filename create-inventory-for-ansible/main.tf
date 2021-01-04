@@ -15,7 +15,8 @@ provider "yandex" {
 
 
 resource "yandex_compute_instance" "vm_1" {
-  name = "terraform1"
+  count = var.create_terraform1 == "true" ? 1 : 0
+  name  = "terraform1"
 
   resources {
     cores  = 2
@@ -39,6 +40,7 @@ resource "yandex_compute_instance" "vm_1" {
 }
 
 resource "yandex_compute_instance" "vm_2" {
+  count = var.create_terraform2 == "true" ? 1 : 0
   name = "terraform2"
 
   resources {
