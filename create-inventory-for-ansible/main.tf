@@ -14,7 +14,7 @@ provider "yandex" {
 }
 
 
-resource "yandex_compute_instance" "vm-1" {
+resource "yandex_compute_instance" "vm_1" {
   name = "terraform1"
 
   resources {
@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
-resource "yandex_compute_instance" "vm-2" {
+resource "yandex_compute_instance" "vm_2" {
   name = "terraform2"
 
   resources {
@@ -73,20 +73,20 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
-output "internal_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.ip_address
+output "vm_1_internal_ip_address" {
+  value = yandex_compute_instance.vm_1.network_interface.0.ip_address
 }
 
-output "internal_ip_address_vm_2" {
-  value = yandex_compute_instance.vm-2.network_interface.0.ip_address
+output "vm_2_internal_ip_address" {
+  value = yandex_compute_instance.vm_2.network_interface.0.ip_address
 }
 
-output "external_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+output "vm_1_external_ip_address" {
+  value = yandex_compute_instance.vm_1.network_interface.0.nat_ip_address
 }
 
-output "external_ip_address_vm_2" {
-  value = yandex_compute_instance.vm-2.network_interface.0.nat_ip_address
+output "vm_2_external_ip_address" {
+  value = yandex_compute_instance.vm_2.network_interface.0.nat_ip_address
 }
 
 output "subnet-1" {

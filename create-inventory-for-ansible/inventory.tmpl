@@ -1,18 +1,2 @@
-[${application1_name}]
-${application1_name} ansible_host=${application1_external_ip_address} # or ansible_host=${application1_internal_ip_address}
-
-#[zookeeper]
-#%{ for index, name in zookeeper_name ~}
-#${name} ansible_host=${zookeeper_external_ip_address[index]} zookeeper_myid=[index] # ${zookeeper_internal_ip_address[index]}
-#%{ endfor ~}
-
-#[zookeeper-quorum]
-#host[0:2]
-
-[etcd]
-%{ for index, name in etcd_name ~}
-${name} ansible_host=${etcd_external_ip_address[index]} # ${etcd_internal_ip_address[index]}
-%{ endfor ~}
-
-[etcd-master]
-${name}[0:2]
+[${vm_1_name}]
+${vm_1_name} ansible_host=${vm_1_external_ip_address} # or ansible_host=${vm_1_internal_ip_address}
