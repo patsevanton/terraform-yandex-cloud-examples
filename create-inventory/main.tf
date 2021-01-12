@@ -50,20 +50,12 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
-output "vm_1_internal_ip_address" {
-   value = [var.create_terraform1 ? yandex_compute_instance.vm_1[*].network_interface.0.ip_address : null]
+output "postgres_internal_ip_address" {
+   value = [var.create_terraform1 ? yandex_compute_instance.postgres[*].network_interface.0.ip_address : null]
 }
 
-output "vm_2_internal_ip_address" {
-  value = [var.create_terraform2 ? yandex_compute_instance.vm_2[*].network_interface.0.ip_address : null]
-}
-
-output "vm_1_external_ip_address" {
-  value = [var.create_terraform1 ? yandex_compute_instance.vm_1[*].network_interface.0.nat_ip_address : null]
-}
-
-output "vm_2_external_ip_address" {
-  value = [var.create_terraform2 ? yandex_compute_instance.vm_2[*].network_interface.0.nat_ip_address : null]
+output "postgres_external_ip_address" {
+  value = [var.create_terraform1 ? yandex_compute_instance.postgres[*].network_interface.0.nat_ip_address : null]
 }
 
 output "subnet-1" {
