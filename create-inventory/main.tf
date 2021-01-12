@@ -15,7 +15,7 @@ provider "yandex" {
 
 
 resource "yandex_compute_instance" "postgres" {
-  count = var.create_terraform1 == "true" ? 1 : 0
+  count = var.create_terraform1 == "true" ? 2 : 0
   name  = "terraform1"
 
   resources {
