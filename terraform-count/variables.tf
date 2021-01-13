@@ -19,11 +19,11 @@ variable "folder_id" {
 }
 
 variable "create_terraform1" {
-  type = string
-  default = "true"
+  type    = bool
+  default = true
 }
 
 variable "create_terraform2" {
-  type = string
-  default = "true"
+  type    = bool
+  default = true
 }
