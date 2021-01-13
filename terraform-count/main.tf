@@ -1,22 +1,10 @@
-terraform {
-  required_providers {
-    yandex = {
-    source = "yandex-cloud/yandex"
-    }
-  }
-}
-
-provider "yandex" {
-  token     = var.token
-  cloud_id  = var.cloud_id
-  folder_id = var.folder_id
-  zone      = "ru-central1-a"
-}
-
 
 resource "yandex_compute_instance" "vm_1" {
-  count = var.create_terraform1 == "true" ? 1 : 0
+  count = var.create_terraform1 ? 1 : 0
   name  = "terraform1"
+  labels = {
+    Groups = "terraform1"
+  }
 
   resources {
     cores  = 2
@@ -40,8 +28,9 @@ resource "yandex_compute_instance" "vm_1" {
 }
 
 resource "yandex_compute_instance" "vm_2" {
-  count = var.create_terraform2 == "true" ? 1 : 0
-  name = "terraform2"
+  count  = var.create_terraform2 ? 1 : 0
+  name   = "terraform2"
+  labels = {}
 
   resources {
     cores  = 2
@@ -73,24 +62,4 @@ resource "yandex_vpc_subnet" "subnet-1" {
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
-}
-
-output "vm_1_internal_ip_address" {
-   value = [var.create_terraform1 ? yandex_compute_instance.vm_1[*].network_interface.0.ip_address : null]
-}
-
-output "vm_2_internal_ip_address" {
-  value = [var.create_terraform2 ? yandex_compute_instance.vm_2[*].network_interface.0.ip_address : null]
-}
-
-output "vm_1_external_ip_address" {
-  value = [var.create_terraform1 ? yandex_compute_instance.vm_1[*].network_interface.0.nat_ip_address : null]
-}
-
-output "vm_2_external_ip_address" {
-  value = [var.create_terraform2 ? yandex_compute_instance.vm_2[*].network_interface.0.nat_ip_address : null]
-}
-
-output "subnet-1" {
-  value = yandex_vpc_subnet.subnet-1.id
 }
