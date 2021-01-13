@@ -11,12 +11,12 @@ locals {
   ## Calculation
   group_hosts = {
     for target in local.instances :
-    target[local.name_attribute] => merge({ for k, v in target : k => v }, map("ansible_host", target[local.ip_attribute]))
+    target[local.name_attribute] => merge({ for k, v in target : k => v }, map("ansible_host", target.network_interface.0.nat_ip_address))
     if(target[local.group_tag] != null ? lookup(target[local.group_tag], "Groups", "") != "" : false)
   }
   no_group_hosts = {
     for target in local.instances :
-    target[local.name_attribute] => merge({ for k, v in target : k => v }, map("ansible_host", target[local.ip_attribute]))
+    target[local.name_attribute] => merge({ for k, v in target : k => v }, map("ansible_host", target.network_interface.0.nat_ip_address]))
     if(target[local.group_tag] != null ? lookup(target[local.group_tag], "Groups", "") == "" : true)
   }
   groups = distinct(flatten([
