@@ -3,7 +3,7 @@ resource "yandex_compute_instance" "vm_1" {
   count = var.create_terraform1 ? 1 : 0
   name  = "terraform1"
   labels = {
-    Groups = "terraform1"
+    ansible_groups = "terraform1"
   }
 
   resources {
