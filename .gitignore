@@ -2,6 +2,7 @@ terraform.tfstate*
 .terraform
 terraform.tfvars
 inventory.*
+!**/templates/*
 # Test data
 env.sh
 test.tf
