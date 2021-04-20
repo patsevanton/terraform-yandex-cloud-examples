@@ -6,3 +6,4 @@
  - `terraform plan`
  - `terraform apply`
  - `ansible all -m ping -i inventory.yaml -u <username>`
+ - `ansible all -m ping -i inventory.ini -u <username>`
