@@ -1,3 +1,7 @@
 terraform.tfstate*
 .terraform
 terraform.tfvars
+inventory.*
+# Test data
+env.sh
+test.tf

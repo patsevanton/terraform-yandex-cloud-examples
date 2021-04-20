@@ -41,10 +41,20 @@ locals {
 }
 
 resource "local_file" "inventory" {
-  content  = yamlencode(local.inventory)
-  filename = "${path.module}/inventory.yaml"
+  for_each = {
+    yaml = yamlencode(local.inventory)
+    ini = templatefile(
+      format("%s/templates/inventory.ini.hcl", path.module),
+      {
+        hosts  = local.inventory.all.hosts
+        groups = local.inventory.all.children
+      }
+    )
+  }
+  content  = each.value
+  filename = format("%s/inventory.%s", path.module, each.key)
 }
 
-output "inventory_file" {
-  value = local_file.inventory.filename
+output "inventory_files" {
+  value = { for ext, file in local_file.inventory : ext => file.filename }
 }
